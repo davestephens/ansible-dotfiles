@@ -1,0 +1,24 @@
+---
+sudo: required
+dist: zesty
+
+language: python
+python: "2.7"
+
+branches:
+  only:
+    - master
+
+install:
+  # Install pip.
+  - sudo easy_install pip
+
+  # Install Ansible.
+  - sudo pip install ansible
+
+script:
+  # Check the role/playbook's syntax.
+  - ansible-playbook -i inventory desktop.yml --syntax-check
+
+  # Run the role/playbook with ansible-playbook.
+  - ansible-playbook -i inventory desktop.yml
