@@ -5,7 +5,7 @@ dist: trusty
 language: python
 python: "2.7"
 
-branches:6
+branches:
   only:
     - master
 
