@@ -1,0 +1,80 @@
+apt_packages:
+  - build-essential
+  - byobu
+  - cmatrix
+  - cowsay
+  - curl
+  - git-core
+  - groff
+  - htop
+  - id3tool
+  - imagemagick
+  - jq
+  - nmap
+  - silversearcher-ag
+  - sl
+  - steam
+  - telnet
+  - tree
+  - mysql-server
+  - libmysqlclient-dev
+  - frozen-bubble
+  - frozen-bubble-data
+  - k4dirstat
+  - keepassx
+  - meld
+  - openssh-server
+  - shutter
+  - transgui
+  - unity-tweak-tool
+  - vlc
+  - zenmap
+  - frozen-bubble
+  - frozen-bubble-data
+  - keepassx
+  - virtualbox-5.1
+  - dkms
+  - spotify-client
+  - google-chrome-stable
+#  - oracle-java8-installer
+  - firefox
+  - gnome-control-center
+  - gnome-online-accounts
+ # - rvm
+  - darktable
+  - neofetch
+  - compizconfig-settings-manager
+
+pyenv_packages:
+  - make
+  - libbz2-dev
+  - libreadline-dev
+  - libsqlite3-dev
+  - llvm
+  - libncursesw5-dev
+  - xz-utils
+  - tk-dev
+
+apt_signing_keys:
+  - https://www.virtualbox.org/download/oracle_vbox_2016.asc
+  - https://www.virtualbox.org/download/oracle_vbox.asc
+  - https://dl-ssl.google.com/linux/linux_signing_key.pub
+
+ubuntu_keyserver_keys:
+  - BBEBDCB318AD50EC6865090613B00F1FD2C19886 # spotify
+  - 0DF731E45CE24F27EEEB1450EFDC8610341D9410 # spotify
+
+apt_repositories:
+  - "deb http://download.virtualbox.org/virtualbox/debian {{ ubuntu_distribution }} contrib"
+  - "deb http://repository.spotify.com stable non-free"
+  - "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+
+ppa_repositories:
+  - "ppa:webupd8team/java"
+  - "ppa:mozillateam/firefox-next"
+  - "ppa:rael-gc/rvm"
+  - "ppa:pmjdebruijn/darktable-release"
+
+debs:
+  - https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
+  - http://ftp.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb

@@ -1,0 +1,6 @@
+---
+- hosts: all
+  connection: local
+
+  tasks:
+    - include: tasks/packages.yml

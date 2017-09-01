@@ -1,0 +1,43 @@
+---
+- name: Install package signing keys via download
+  apt_key:
+    url: "{{ item }}"
+    state: present
+  with_items: "{{ apt_signing_keys }}"
+
+- name: Install signing keys from ubuntu keyserver
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: "{{ item }}"
+  with_items: "{{ ubuntu_keyserver_keys }}"
+
+- name: Add package sources
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items: "{{ apt_repositories }}"
+
+- name: Add ppa repositories
+  apt_repository:
+    repo: "{{ item }}"
+  with_items: "{{ ppa_repositories }}"
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Update all packages to the latest version
+  apt:
+    upgrade: dist
+  when: update_all_packages == True
+
+- name: "Install {{ item }}"
+  apt:
+    name: "{{ item }}"
+  with_items: "{{ apt_packages }}"
+
+- name: Install debs
+  apt:
+    deb: "{{ item }}"
+  with_items: "{{ debs }}"
