@@ -21,4 +21,4 @@ script:
   - ansible-playbook -i inventory desktop.yml --syntax-check
 
   # Run the role/playbook with ansible-playbook.
-  - ansible-playbook -i inventory desktop.yml
+  - ansible-playbook -i inventory desktop.yml -b
