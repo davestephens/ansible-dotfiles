@@ -37,6 +37,12 @@
     name: "{{ item }}"
   with_items: "{{ apt_packages }}"
 
+- name: "Install zesty only package: {{ item }}"
+  apt:
+    name: "{{ item }}"
+  with_items: "{{ zesty_apt_packages }}"
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'zesty'
+
 - name: Install debs
   apt:
     deb: "{{ item }}"

@@ -42,8 +42,10 @@ apt_packages:
   - gnome-online-accounts
  # - rvm
   - darktable
-  - neofetch
   - compizconfig-settings-manager
+
+zesty_app_packages:
+  - neofetch
 
 pyenv_packages:
   - make
@@ -74,7 +76,6 @@ ppa_repositories:
   - "ppa:mozillateam/firefox-next"
   - "ppa:rael-gc/rvm"
   - "ppa:pmjdebruijn/darktable-release"
-  - "ppa:dawidd0811/neofetch"
 
 debs:
   - https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
