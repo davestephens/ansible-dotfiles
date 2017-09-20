@@ -32,7 +32,7 @@
     upgrade: dist
   when: update_all_packages == True
 
-- name: "Install {{ item }}"
+- name: "Install packages"
   package:
     name: "{{ item }}"
   with_items: "{{ apt_packages }}"

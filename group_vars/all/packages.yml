@@ -70,7 +70,7 @@ apt_repositories:
   - "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
 
 ppa_repositories:
-  - "ppa:webupd8team/java"
+  #- "ppa:webupd8team/java"
   - "ppa:mozillateam/firefox-next"
   - "ppa:rael-gc/rvm"
   - "ppa:pmjdebruijn/darktable-release"
