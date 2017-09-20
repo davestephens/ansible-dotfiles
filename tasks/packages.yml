@@ -33,7 +33,7 @@
   when: update_all_packages == True
 
 - name: "Install {{ item }}"
-  apt:
+  package:
     name: "{{ item }}"
   with_items: "{{ apt_packages }}"
 
