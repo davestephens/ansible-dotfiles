@@ -12,6 +12,7 @@ Sets up and configures all of the software I use for development on an Ubuntu de
 - Set up my dotfiles
 - Configure Rubymine
 - Set up rbenv and rubies
+- Set up pyenv and pythons
 - Set up my keys
 - Other stuff I can't think of right now
 
@@ -21,4 +22,8 @@ Sets up and configures all of the software I use for development on an Ubuntu de
 3. Run it: `ansible-playbook -i inventory desktop.yml -b -K`
 
 ## Testing 
-- Travis-CI planned
+Requires Docker:
+
+```
+./tests/test.sh
+```

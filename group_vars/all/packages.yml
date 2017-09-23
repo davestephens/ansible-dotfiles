@@ -13,7 +13,6 @@ apt_packages:
   - nmap
   - silversearcher-ag
   - sl
-  - steam
   - telnet
   - tree
   - mysql-server
@@ -32,7 +31,7 @@ apt_packages:
   - frozen-bubble
   - frozen-bubble-data
   - keepassx
-  - virtualbox-5.1
+#  - virtualbox-5.1
   - dkms
   - spotify-client
   - google-chrome-stable
@@ -40,7 +39,6 @@ apt_packages:
   - firefox
   - gnome-control-center
   - gnome-online-accounts
- # - rvm
   - darktable
   - neofetch
   - compizconfig-settings-manager
@@ -79,3 +77,4 @@ ppa_repositories:
 debs:
   - https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
   - http://ftp.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
+  - https://steamcdn-a.akamaihd.net/client/installer/steam.deb
