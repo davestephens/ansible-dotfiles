@@ -23,7 +23,8 @@ neutral='\033[0m'
 timestamp=$(date +%s)
 
 # Allow environment variables to override defaults.
-distro=${distro:-"ubuntu1604"}
+distro=${distro:-"ubuntu1710"}
+docker_owner=${docker_owner:-"fubarhouse"}
 playbook=${playbook:-"desktop.yml"}
 cleanup=${cleanup:-"true"}
 container_id=${container_id:-$timestamp}
@@ -32,27 +33,41 @@ test_idempotence=${test_idempotence:-"true"}
 ## Set up vars for Docker setup.
 case $distro in
   centos7)
+    docker_owner="geerlingguy"
     init="/usr/lib/systemd/systemd"
     opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   ;;
   ubuntu1604)
+    docker_owner="geerlingguy"
+    init="/lib/systemd/systemd"
+    opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  ;;
+  ubuntu_1704)
+    docker_owner="fubarhouse"
+    init="/lib/systemd/systemd"
+    opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  ;;
+  ubuntu_1710)
+    docker_owner="fubarhouse"
     init="/lib/systemd/systemd"
     opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   ;;
   debian9)
+    docker_owner="geerlingguy"
     init="/lib/systemd/systemd"
     opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   ;;
   fedora24)
+    docker_owner="geerlingguy"
     init="/usr/lib/systemd/systemd"
     opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   ;;
 esac
 
 # Run the container using the supplied OS.
-printf ${green}"Starting Docker container: geerlingguy/docker-$distro-ansible."${neutral}"\n"
-docker pull geerlingguy/docker-$distro-ansible:latest
-docker run --detach --volume="$PWD":/etc/ansible/playbooks/playbook_under_test:rw --name $container_id $opts geerlingguy/docker-$distro-ansible:latest $init
+printf ${green}"Starting Docker container: $docker_owner/docker-$distro-ansible."${neutral}"\n"
+docker pull $docker_owner/docker-$distro-ansible:latest
+docker run --detach --volume="$PWD":/etc/ansible/playbooks/playbook_under_test:rw --name $container_id $opts $docker_owner/docker-$distro-ansible:latest $init
 
 printf "\n"
 

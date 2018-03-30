@@ -4,3 +4,20 @@
 
   tasks:
     - include: tasks/packages.yml
+      tags: packages
+
+  roles:
+    - { role: rvm_io.ruby,
+        tags: ruby,
+        rvm1_rubies: ['ruby-2.5.1'],
+        rvm1_install_flags: '--auto-dotfiles  --user-install',
+        rvm1_user: "{{ username }}"
+      }
+
+# pyenv
+# rbenv/rvm
+# jetbrains toolbox and rubymine
+# vs code
+# nvidia drivers
+# docker
+# git extras

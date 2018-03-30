@@ -1,2 +1,7 @@
-ubuntu_distribution: zesty
+name: David Stephens
+username: david
+email: dave@force9.org
+ubuntu_distribution: bionic
 update_all_packages: false
+
+

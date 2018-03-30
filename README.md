@@ -10,9 +10,10 @@ Sets up and configures all of the software I use for development on an Ubuntu de
 
 ## What It'll Do Soon
 - Set up my dotfiles
-- Configure Rubymine
+- Configure Visual Studio Code
 - Set up rbenv and rubies
 - Set up pyenv and pythons
+- Set up nvm and nodes
 - Set up my keys
 - Other stuff I can't think of right now
 

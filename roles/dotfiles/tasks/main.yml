@@ -1,0 +1,22 @@
+---
+- name: Check out dotfiles
+  git:
+    repo: "{{ dotfiles_repo }}"
+    dest:
+    version: "{{ dotfiles_repo_branch }}"
+
+}
+- name: Copy dotfiles
+  copy:
+    src: dotfiles
+    dest: "{{ dotfiles_home }}"
+
+- name: Template dotfiles
+  template:
+    src: "{{ item }}"
+    dest: "{{ dotfiles_home }}/{{ item }}"
+  with_items:
+    - .bashrc
+    - .gitconfig
+
+- name: Link dotfiles into user root
