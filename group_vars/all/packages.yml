@@ -5,6 +5,7 @@ apt_packages:
   - cowsay
   - curl
   - git-core
+  - git-extras
   - htop
   - imagemagick
   - jq
@@ -25,7 +26,7 @@ apt_packages:
   - unity-tweak-tool
   - vlc
   - zenmap
-#  - virtualbox-5.1
+  - virtualbox-5.2
 #  - dkms
 #  - libcurl3
 #  - spotify-client
@@ -37,6 +38,8 @@ apt_packages:
   - darktable
   - hexchat
   - caja-dropbox
+  - tilix
+  - docker-ce
 
 pyenv_packages:
   - make
@@ -52,6 +55,7 @@ apt_signing_keys:
   - https://www.virtualbox.org/download/oracle_vbox_2016.asc
   - https://www.virtualbox.org/download/oracle_vbox.asc
   - https://dl-ssl.google.com/linux/linux_signing_key.pub
+  - https://download.docker.com/linux/ubuntu/gpg
 
 ubuntu_keyserver_keys:
   - 0DF731E45CE24F27EEEB1450EFDC8610341D9410 # spotify
@@ -60,11 +64,10 @@ apt_repositories:
   - "deb http://download.virtualbox.org/virtualbox/debian {{ ubuntu_distribution }} contrib"
   - "deb http://repository.spotify.com stable non-free"
   - "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+  - "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ubuntu_distribution }} stable"
 
 ppa_repositories:
   #- "ppa:webupd8team/java"
-  - "ppa:mozillateam/firefox-next"
-  - "ppa:rael-gc/rvm"
   - "ppa:pmjdebruijn/darktable-release"
 
 debs:

@@ -14,10 +14,18 @@
         rvm1_user: "{{ username }}"
       }
 
+
+## TODO
+# dotfiles
+# set login shell for rvm
 # pyenv
-# rbenv/rvm
 # jetbrains toolbox and rubymine
-# vs code
 # nvidia drivers
+
+
+
+## done
+# vs code
+# rbenv/rvm
 # docker
 # git extras
