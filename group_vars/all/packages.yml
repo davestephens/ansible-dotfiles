@@ -30,7 +30,7 @@ apt_packages:
 #  - dkms
 #  - libcurl3
 #  - spotify-client
-  - google-chrome-stable
+#  - google-chrome-stable
 #  - oracle-java8-installer
   - firefox
   - neofetch
@@ -68,7 +68,7 @@ ubuntu_keyserver_keys:
   - 0DF731E45CE24F27EEEB1450EFDC8610341D9410 # spotify
 
 apt_repositories:
-  #- "deb http://download.virtualbox.org/virtualbox/debian {{ ubuntu_distribution }} contrib"
+  - "deb http://download.virtualbox.org/virtualbox/debian {{ ubuntu_distribution }} contrib"
   - "deb http://repository.spotify.com stable non-free"
   #- "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
   # - "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ubuntu_distribution }} stable"

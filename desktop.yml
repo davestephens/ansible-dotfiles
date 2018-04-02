@@ -16,13 +16,11 @@
       tags: os_customisation
 
   roles:
-    - { role: rvm_io.ruby,
-        tags: ruby,
-        rvm1_rubies: ['ruby-2.5.1'],
-        rvm1_install_flags: '--auto-dotfiles  --user-install',
-        rvm1_user: "{{ username }}"
-      }
-
+    - role: rvm_io.ruby
+      tags: ruby
+      rvm1_rubies: ['ruby-2.5.1']
+      rvm1_install_flags: '--auto-dotfiles  --user-install'
+      rvm1_user: "{{ username }}"
 
 ## TODO
 # pyenv

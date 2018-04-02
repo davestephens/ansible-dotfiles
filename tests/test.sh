@@ -28,46 +28,10 @@ docker_owner=${docker_owner:-"geerlingguy"}
 playbook=${playbook:-"desktop.yml"}
 cleanup=${cleanup:-"true"}
 container_id=${container_id:-$timestamp}
-test_idempotence=${test_idempotence:-"true"}
-
-## Set up vars for Docker setup.
-case $distro in
-  centos7)
-    docker_owner="geerlingguy"
-    init="/usr/lib/systemd/systemd"
-    opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  ;;
-  ubuntu1604)
-    docker_owner="geerlingguy"
-    init="/lib/systemd/systemd"
-    opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  ;;
-  ubuntu_1704)
-    docker_owner="fubarhouse"
-    init="/lib/systemd/systemd"
-    opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  ;;
-  ubuntu_1710)
-    docker_owner="fubarhouse"
-    init="/lib/systemd/systemd"
-    opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  ;;
-  ubuntu_1804)
-    docker_owner="davestephens"
-    init="/lib/systemd/systemd"
-    opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  ;;
-  debian9)
-    docker_owner="geerlingguy"
-    init="/lib/systemd/systemd"
-    opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  ;;
-  fedora24)
-    docker_owner="geerlingguy"
-    init="/usr/lib/systemd/systemd"
-    opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  ;;
-esac
+test_idempotence=${test_idempotence:-"false"}
+init="/lib/systemd/systemd"
+opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+skip_tags="ruby,packages"
 
 # Run the container using the supplied OS.
 printf ${green}"Starting Docker container: $docker_owner/docker-$distro-ansible."${neutral}"\n"
@@ -98,13 +62,13 @@ printf "\n"
 
 # Run Ansible playbook.
 printf ${green}"Running command: docker exec $container_id env TERM=xterm ansible-playbook /etc/ansible/playbooks/playbook_under_test/$playbook"${neutral}"\n"
-docker exec $container_id env TERM=xterm env ANSIBLE_FORCE_COLOR=1 ansible-playbook /etc/ansible/playbooks/playbook_under_test/$playbook
+docker exec $container_id env TERM=xterm env ANSIBLE_FORCE_COLOR=1 ansible-playbook /etc/ansible/playbooks/playbook_under_test/$playbook --skip-tags $skip_tags
 
 if [ "$test_idempotence" = true ]; then
   # Run Ansible playbook again (idempotence test).
   printf ${green}"Running playbook again: idempotence test"${neutral}
   idempotence=$(mktemp)
-  docker exec $container_id ansible-playbook /etc/ansible/playbooks/playbook_under_test/$playbook | tee -a $idempotence
+  docker exec $container_id ansible-playbook /etc/ansible/playbooks/playbook_under_test/$playbook --skip-tags $skip_tags | tee -a $idempotence
   tail $idempotence \
     | grep -q 'changed=0.*failed=0' \
     && (printf ${green}'Idempotence test: pass'${neutral}"\n") \
