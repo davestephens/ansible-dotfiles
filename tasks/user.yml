@@ -1,0 +1,16 @@
+---
+# need this here for tests to pass on travis-ci
+- getent:
+    database: passwd
+    key: "{{ username }}"
+  register: getent_test
+  ignore_errors: true
+
+- name: "Create {{ username }}"
+  user:
+    name: "{{ username }}"
+    comment: "{{ name }}"
+    groups: sudo
+    shell: /bin/bash
+    password: $6$BWi1m6BS$pzuEx3nYaz.PSjHzQCG8WmMtgcrTxznMzwFP6erVZic5Y85IONcnrPHF6toN//yHQIwWx6aIvx4q3EQ35Yxek0 # set password to 'secret'
+  when: getent_test.failed is defined 

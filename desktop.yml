@@ -3,6 +3,9 @@
   connection: local
 
   tasks:
+    - include: tasks/user.yml
+      tags: user
+
     - include: tasks/packages.yml
       tags: packages
 
