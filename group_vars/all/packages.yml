@@ -45,6 +45,8 @@ apt_packages:
   - p7zip-full
   - p7zip-rar
   - vim
+  - mono-complete
+  - gtk-sharp2
 
 pyenv_packages:
   - make
@@ -81,3 +83,19 @@ debs:
 #  - https://steamcdn-a.akamaihd.net/client/installer/steam.deb
   - https://go.microsoft.com/fwlink/?LinkID=760868 # vscode
   - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+
+
+# random stuff in zips/tars/gz etc 
+
+non_standard_packages:
+  - name: pablodraw
+    url: http://download.picoe.ca/pablodraw/3.2/PabloDraw-3.2.1.zip
+    version: 3.2.1
+
+# stuff in rar packages (seriously?!)
+
+rar_packages:
+  - name: netrunner
+    url: http://www.mysticbbs.com/downloads/nr20b186.rar
+    version: 2.0b186

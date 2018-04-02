@@ -21,10 +21,13 @@
 ### Stuff to run as {{ username }}
 
 - block:
-    - name: Create ~/dev directory
+    - name: Create directories
       file: 
         path: "/home/{{ username }}/dev"
         state: directory
+      with_items:
+        - "/home/{{ username }}/dev"
+        - "/home/{{ username }}/programs"
 
     - name: Clone Powerline fonts installer
       git:
@@ -37,6 +40,11 @@
 
     - debug:
         var: font_install.stdout_lines
+
+    - name: Tidy up Powerline fonts installer
+      file:
+        path: "/home/{{ username }}/fonts"
+        state: absent
 
   become: yes
   become_user: "{{ username }}"

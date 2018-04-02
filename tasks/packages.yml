@@ -41,3 +41,36 @@
   apt:
     deb: "{{ item }}"
   with_items: "{{ debs }}"
+
+
+## random stuff that requires custom hacking as the user
+
+- block:
+  - name: Create directories for archive packages
+    file:
+      path: "/home/{{ username }}/programs/{{ item.name }}-{{ item.version }}"
+      state: directory
+    with_items: "{{ non_standard_packages }}"
+
+  - name: Unpack archived packages
+    unarchive:
+      src: "{{ item.url }}"
+      dest: "/home/{{ username }}/programs/{{ item.name }}-{{ item.version }}"
+      remote_src: true
+    with_items: "{{ non_standard_packages }}"
+
+  - name: Create directories for rar packages
+    file:
+      path: "/home/{{ username }}/programs/{{ item.name }}-{{ item.version }}"
+      state: directory
+    with_items: "{{ rar_packages }}"
+
+  - name: Unpack rar packages
+    shell: "curl -O {{ item.url }} -sSf && unrar x $(basename {{ item.url }}) {{ item.name }}-{{ item.version }} && rm $(basename {{ item.url }})"
+    args:
+      chdir: "/home/{{ username }}/programs/"
+    with_items: "{{ rar_packages }}"
+
+  become: yes
+  become_user: "{{ username }}"
+
