@@ -1,3 +1,7 @@
-dotfiles_home: "{{ ansible_user.HOME }}/.dotfiles }}"
-dotfiles_repo: https://github.com/davestephens/dotfiles.git
-dotfiles_repo_branch: cruft-removal
+---
+linked_dotfiles:
+  - .bash_profile
+  - .bashrc
+  - .gitconfig
+  - .gitignore
+  - .vimrc

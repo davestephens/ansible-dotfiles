@@ -1,0 +1,76 @@
+---
+- block:
+  - name: Create dotfiles directories
+    file:
+      path: "{{ item }}"
+      state: directory
+    with_items:
+      - "{{ dotfiles_home }}"
+      - "{{ dotfiles_home }}/caches"
+      - "{{ dotfiles_home }}/backups"
+      - "{{ dotfiles_home }}/caches/vim"
+      - "{{ dotfiles_home }}/link"
+      - "{{ dotfiles_home }}/link/vim"
+      - "{{ dotfiles_home }}/source"
+
+  - name: Template linked dotfiles
+    template:
+      src: "dotfiles/link/{{ item }}"
+      dest: "{{ dotfiles_home }}/link/{{ item }}"
+    with_items: "{{ linked_dotfiles }}"
+
+  - name: Copy static sourced dotfiles
+    copy:
+      src: "{{ item }}"
+      dest: "{{ dotfiles_home }}/source/"
+    with_fileglob: "dotfiles/source/*"
+
+  - name: Check existing dotfiles
+    stat:
+      path: "/home/{{ username }}/{{ item }}"
+    with_items: "{{ linked_dotfiles }}"
+    register: dotfiles_stat
+
+  - debug:
+      var: dotfiles_stat
+
+  - name: Backup existing dotfiles if they aren't links to our dotfiles
+    copy:
+      src: "/home/{{ username }}/{{ item.item }}"
+      dest: "{{ dotfiles_home }}/backups"
+    with_items: "{{ dotfiles_stat.results }}"
+    when:
+      - not item | skipped
+      - item.stat.exists == true
+      - item.stat.islnk == false  
+
+  - name: Remove existing dotfiles if they aren't links to our dotfiles
+    file:
+      path: "/home/{{ username }}/{{ item.item }}"
+      state: absent
+    with_items: "{{ dotfiles_stat.results }}"
+    when:
+      - not item | skipped
+      - item.stat.exists == true
+      - item.stat.islnk == false
+
+  - name: Link dotfiles
+    file:
+      src: "{{ dotfiles_home }}/link/{{ item }}"
+      dest: "/home/{{ username }}/{{ item }}"
+      state: link
+    with_items: "{{ linked_dotfiles }}"
+
+  - name: Copy vim config
+    synchronize:
+      src: dotfiles/link/vim/
+      dest: "{{ dotfiles_home }}/link/vim"
+
+  - name: Link vim config
+    file:
+      src: "{{ dotfiles_home }}/link/vim"
+      dest: "/home/{{ username }}/.vim"
+      state: link
+      
+  become: yes
+  become_user: "{{ username }}"

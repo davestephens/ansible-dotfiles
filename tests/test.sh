@@ -23,8 +23,8 @@ neutral='\033[0m'
 timestamp=$(date +%s)
 
 # Allow environment variables to override defaults.
-distro=${distro:-"ubuntu1710"}
-docker_owner=${docker_owner:-"fubarhouse"}
+distro=${distro:-"ubuntu1804"}
+docker_owner=${docker_owner:-"geerlingguy"}
 playbook=${playbook:-"desktop.yml"}
 cleanup=${cleanup:-"true"}
 container_id=${container_id:-$timestamp}
@@ -49,6 +49,11 @@ case $distro in
   ;;
   ubuntu_1710)
     docker_owner="fubarhouse"
+    init="/lib/systemd/systemd"
+    opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  ;;
+  ubuntu_1804)
+    docker_owner="davestephens"
     init="/lib/systemd/systemd"
     opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   ;;

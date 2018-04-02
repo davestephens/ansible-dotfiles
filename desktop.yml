@@ -6,6 +6,12 @@
     - include: tasks/packages.yml
       tags: packages
 
+    - include: tasks/dotfiles.yml
+      tags: dotfiles
+
+    - include: tasks/os_customisation.yml
+      tags: os_customisation
+
   roles:
     - { role: rvm_io.ruby,
         tags: ruby,
@@ -16,16 +22,9 @@
 
 
 ## TODO
-# dotfiles
-# set login shell for rvm
 # pyenv
 # jetbrains toolbox and rubymine
 # nvidia drivers
+# template git username and email
+# terminal config - fonts, etc
 
-
-
-## done
-# vs code
-# rbenv/rvm
-# docker
-# git extras

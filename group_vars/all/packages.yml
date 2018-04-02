@@ -39,7 +39,12 @@ apt_packages:
   - hexchat
   - caja-dropbox
   - tilix
-  - docker-ce
+  - docker.io # until ansible ppa available for bionic
+  - rsync
+  - unrar
+  - p7zip-full
+  - p7zip-rar
+  - vim
 
 pyenv_packages:
   - make
@@ -61,10 +66,10 @@ ubuntu_keyserver_keys:
   - 0DF731E45CE24F27EEEB1450EFDC8610341D9410 # spotify
 
 apt_repositories:
-  - "deb http://download.virtualbox.org/virtualbox/debian {{ ubuntu_distribution }} contrib"
+  #- "deb http://download.virtualbox.org/virtualbox/debian {{ ubuntu_distribution }} contrib"
   - "deb http://repository.spotify.com stable non-free"
-  - "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
-  - "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ubuntu_distribution }} stable"
+  #- "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+  # - "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ubuntu_distribution }} stable"
 
 ppa_repositories:
   #- "ppa:webupd8team/java"
@@ -75,3 +80,4 @@ debs:
   - http://ftp.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
 #  - https://steamcdn-a.akamaihd.net/client/installer/steam.deb
   - https://go.microsoft.com/fwlink/?LinkID=760868 # vscode
+  - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb

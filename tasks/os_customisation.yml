@@ -1,0 +1,42 @@
+---
+
+### Stuff to run as root
+
+- name: Add user to docker group
+  shell: "usermod -a -G docker {{ username }}"
+  
+- name: Check /etc/profile.d/vte-2.91.sh existance
+  stat: 
+    path: /etc/profile.d/vte-2.91.sh
+  register: vte
+
+- name: Symlink vte.sh
+  file:
+    src: /etc/profile.d/vte-2.91.sh
+    dest: /etc/profile.d/vte.sh
+    state: link
+  when: vte.stat.exists == true
+
+
+### Stuff to run as {{ username }}
+
+- block:
+    - name: Create ~/dev directory
+      file: 
+        path: "/home/{{ username }}/dev"
+        state: directory
+
+    - name: Clone Powerline fonts installer
+      git:
+        repo: https://github.com/powerline/fonts.git
+        dest: "/home/{{ username }}/fonts"
+
+    - name: Run Powerline fonts installer
+      shell: "/home/{{ username }}/fonts/install.sh"
+      register: font_install
+
+    - debug:
+        var: font_install.stdout_lines
+
+  become: yes
+  become_user: "{{ username }}"
