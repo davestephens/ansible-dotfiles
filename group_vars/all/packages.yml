@@ -47,6 +47,8 @@ apt_packages:
   - vim
   - mono-complete
   - gtk-sharp2
+  - arc-theme
+  - adapta-gtk-theme
 
 pyenv_packages:
   - make
@@ -76,6 +78,7 @@ apt_repositories:
 ppa_repositories:
   #- "ppa:webupd8team/java"
   - "ppa:pmjdebruijn/darktable-release"
+  - "ppa:tista/adapta"
 
 debs:
   - https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
