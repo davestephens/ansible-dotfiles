@@ -31,8 +31,8 @@
     with_items: "{{ linked_dotfiles }}"
     register: dotfiles_stat
 
-  - debug:
-      var: dotfiles_stat
+  # - debug:
+  #     var: dotfiles_stat
 
   - name: Backup existing dotfiles if they aren't links to our dotfiles
     copy:

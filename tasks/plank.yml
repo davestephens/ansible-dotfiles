@@ -1,0 +1,15 @@
+---
+### Stuff to run as {{ username }}
+
+- block:
+  - name: Copy Plank launchers
+    copy:
+      src: "plank/{{ item }}.dockitem"
+      dest: "/home/{{ username }}/.config/plank/dock1/launchers"
+    with_items:
+      - code
+      - google-chrome
+
+  become: yes
+  become_user: "{{ username }}"
+

@@ -26,6 +26,7 @@
   apt:
     update_cache: yes
     cache_valid_time: 3600
+  changed_when: false
 
 - name: Remove packages
   apt:
@@ -72,7 +73,7 @@
     with_items: "{{ rar_packages }}"
 
   - name: Unpack rar packages
-    shell: "curl -O {{ item.url }} -sSf && unrar x $(basename {{ item.url }}) {{ item.name }}-{{ item.version }} && rm $(basename {{ item.url }})"
+    shell: "curl -O {{ item.url }} -sSf && unrar x -y $(basename {{ item.url }}) {{ item.name }}-{{ item.version }} && rm $(basename {{ item.url }})"
     args:
       chdir: "/home/{{ username }}/programs/"
     with_items: "{{ rar_packages }}"

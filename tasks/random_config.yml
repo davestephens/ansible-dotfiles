@@ -1,0 +1,18 @@
+---
+
+### Stuff to run as root
+
+- name: Add user to docker group
+  shell: "usermod -a -G docker {{ username }}"
+  
+- name: Check /etc/profile.d/vte-2.91.sh existance
+  stat: 
+    path: /etc/profile.d/vte-2.91.sh
+  register: vte
+
+- name: Symlink vte.sh
+  file:
+    src: /etc/profile.d/vte-2.91.sh
+    dest: /etc/profile.d/vte.sh
+    state: link
+  when: vte.stat.exists == true

@@ -3,8 +3,8 @@
   connection: local
 
   tasks:
-    - include: tasks/user.yml
-      tags: user
+    # - include: tasks/user.yml
+    #   tags: user
 
     - include: tasks/packages.yml
       tags: packages
@@ -12,8 +12,14 @@
     - include: tasks/dotfiles.yml
       tags: dotfiles
 
-    - include: tasks/os_customisation.yml
-      tags: os_customisation
+    - include: tasks/fonts.yml
+      tags: fonts
+
+    - include: tasks/plank.yml
+      tags: plank
+
+    - include: tasks/random_config.yml
+      tags: random_config
 
   roles:
     - role: rvm_io.ruby
