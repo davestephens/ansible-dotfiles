@@ -9,6 +9,9 @@
     - include: tasks/packages.yml
       tags: packages
 
+    - include: tasks/node.yml
+      tags: node
+
     - include: tasks/dotfiles.yml
       tags: dotfiles
 

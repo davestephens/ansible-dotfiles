@@ -1,0 +1,9 @@
+---
+- block:
+  - name: Clone nvm repo
+    git:
+      repo: https://github.com/creationix/nvm.git
+      dest: /home/{{ username }}/.nvm
+
+  become: yes
+  become_user: "{{ username }}"
