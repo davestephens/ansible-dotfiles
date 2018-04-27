@@ -86,7 +86,7 @@ ppa_repositories:
 
 debs:
   - https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
-  - http://ftp.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.7avalon_all.deb
+  - http://ftp.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.7_all.deb
 #  - https://steamcdn-a.akamaihd.net/client/installer/steam.deb
   - https://go.microsoft.com/fwlink/?LinkID=760868 # vscode
   - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -106,3 +106,5 @@ rar_packages:
   - name: netrunner
     url: http://www.mysticbbs.com/downloads/nr20b186.rar
     version: 2.0b186
+
+nvm_install_script: https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh
