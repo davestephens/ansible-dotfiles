@@ -39,7 +39,6 @@ apt_packages:
   - hexchat
   - caja-dropbox
   - tilix
-  - docker.io # until ansible ppa available for bionic
   - rsync
   - unrar
   - p7zip-full
@@ -49,6 +48,11 @@ apt_packages:
   - gtk-sharp2
   - arc-theme
   - adapta-gtk-theme
+  - plank
+ # - docker-ce
+
+apt_packages_to_remove:
+  - docker.io
 
 pyenv_packages:
   - make
@@ -73,7 +77,7 @@ apt_repositories:
   - "deb http://download.virtualbox.org/virtualbox/debian {{ ubuntu_distribution }} contrib"
   - "deb http://repository.spotify.com stable non-free"
   #- "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
-  # - "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ubuntu_distribution }} stable"
+  - "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ubuntu_distribution }} stable"
 
 ppa_repositories:
   #- "ppa:webupd8team/java"
@@ -82,7 +86,7 @@ ppa_repositories:
 
 debs:
   - https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
-  - http://ftp.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
+  - http://ftp.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.7avalon_all.deb
 #  - https://steamcdn-a.akamaihd.net/client/installer/steam.deb
   - https://go.microsoft.com/fwlink/?LinkID=760868 # vscode
   - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
