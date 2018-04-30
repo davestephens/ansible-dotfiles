@@ -51,8 +51,15 @@
 
 
 ## random stuff that requires custom hacking as the user
-
 - block:
+  - name: Unarchive things that just need unpacking
+    unarchive:
+      src: "{{ item }}"
+      dest: "/home/{{ username }}/programs/"
+      remote_src: true
+    with_items:
+      - "{{ archives_to_unpack }}"
+
   - name: Create directories for archive packages
     file:
       path: "/home/{{ username }}/programs/{{ item.name }}-{{ item.version }}"

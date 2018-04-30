@@ -93,8 +93,12 @@ debs:
 
 
 
-# random stuff in zips/tars/gz etc 
 
+# stuff that just needs unpacking
+archives_to_unpack:
+  - https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.8.3678.tar.gz
+
+# random stuff in zips/tars/gz etc 
 non_standard_packages:
   - name: pablodraw
     url: http://download.picoe.ca/pablodraw/3.2/PabloDraw-3.2.1.zip
