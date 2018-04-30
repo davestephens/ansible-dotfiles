@@ -50,6 +50,12 @@ apt_packages:
   - adapta-gtk-theme
   - plank
  # - docker-ce
+  - qt5-default 
+  - libqt5webkit5-dev 
+  - gstreamer1.0-plugins-base 
+  - gstreamer1.0-tools 
+  - gstreamer1.0-x
+
 
 apt_packages_to_remove:
   - docker.io
