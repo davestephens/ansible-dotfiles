@@ -29,7 +29,8 @@ Sets up and configures all of the software I use for development on an Ubuntu de
 ## Quick Installation
 1. Install Ansible and git: `sudo apt-get install ansible git`
 2. Clone the playbook: `git clone https://github.com/davestephens/ansible-playbook-ubuntu-dev-desktop.git && cd ansible-playbook-ubuntu-dev-desktop`
-3. Run it: `ansible-playbook -i inventory desktop.yml -b -K`
+3. Install the required Ansible roles: `ansible-galaxy install -r requirements.yml`
+4. Run it: `ansible-playbook -i inventory desktop.yml -b -K`
 
 ## Testing 
 Requires Docker:
