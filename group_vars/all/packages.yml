@@ -56,6 +56,7 @@ apt_packages:
   - gstreamer1.0-tools 
   - gstreamer1.0-x
   - libpq-dev
+  - net-tools
 
 
 apt_packages_to_remove:
